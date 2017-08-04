@@ -165,6 +165,14 @@ nav.content-single-pagination {
   nav.root-nav .nav-element {
     padding: 10px 0px;
   }
+
+}
+
+@media (max-width: 550px) {
+
+  .content {
+    margin: 10px auto;
+  }
 }
 
 
