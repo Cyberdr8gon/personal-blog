@@ -1,0 +1,27 @@
+languageCode = "en-us"
+title = "Sam Bateman"
+baseurl = "/"
+
+[params]
+  firstName = "Sam"
+  hostname = "mySite"
+  cleanedUri = "bateman.io"
+  loginName = "CyberDr8gon"
+  latestCount = 3 
+  dateFmt = "Jan 02, 2006"
+
+
+[[menu.main]]
+    url = "/"
+    name = "~"
+    weight = 1
+
+[[menu.main]]
+    url = "/post/"
+    name = "~/posts"
+    weight = 2
+
+[[menu.main]]
+    url = "/project/"
+    name = "~/projects"
+    weight = 3

@@ -1,0 +1,42 @@
+{{ partial "header_before_seo" .  }}
+
+{{ partial "header_after_seo" .  }}
+{{ $latestcount := .Site.Params.LatestCount | default 3  }}
+      <div class="content">
+        <b><u>Hi!</u></b> My name is Sam Bateman!
+        <br> Wanna get a hold of me about jobs/questions/life/anything? Just shoot me an email at <a href="mailto:sam@bateman.io">sam@bateman.io</a>!
+        <br>
+        <br> &#128640; <b><u>Pr</u></b>ojects.
+        <br>
+        <div class="content-project-list">
+          <div class="projects">
+            <ul>
+              {{- range (first $latestcount (where .Pages "Section" "project")) -}}
+                {{ partial "li" . }}
+              {{- end -}}
+            </ul>
+          </div>
+        </div>
+        <div class="content-see-more">
+          <a href="/project/">See More!</a>
+        </div>
+        <br>
+        <br> &#10024; <b><u>Wr</u></b>itings.
+        <div class="content-blog-list">
+          <div class="posts">
+            <ul>
+              {{- range (first $latestcount (where .Pages "Section" "post")) -}}
+                {{ partial "li" . }}
+              {{- end -}}
+
+            </ul>
+          <div>
+        </div>
+        <div class="content-see-more">
+          <a href="/post/">See More!</a>
+        </div>
+      </div>
+      <br/>
+      <br/>
+
+{{ partial "footer" .  }}

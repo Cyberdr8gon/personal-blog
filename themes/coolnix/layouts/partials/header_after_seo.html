@@ -1,0 +1,29 @@
+</head>
+
+<body>
+  <div class="header">
+    <div id="stringDataDivHidden" data-first-name="{{.Site.Params.firstName}}" data-login="{{.Site.Params.loginName}}" data-hostname="{{.Site.Params.hostname}}"></div>
+    <a href="/">
+      <div id="header-wrapper" class="header-wrapper">
+        <b id="username"><span id="consoleText">{{ .Site.Params.firstName  }}@{{ .Site.Params.cleanedUri  }}:~$</span><span id="cursor">_</span></b>
+      </div>
+    </a>
+  </div>
+
+  <nav class="root-nav">
+    {{ if .Site.Menus.main  }}
+        {{ range sort .Site.Menus.main  }}
+          <a href="{{ .URL  }}">
+            <div class="nav-element">
+              {{ .Name  }}
+            </div>
+          </a>
+        {{ end  }}
+    {{ end  }}
+  </nav>
+
+  <div class="page-content">
+    <div class="wrapper">
+
+
+
