@@ -162,6 +162,9 @@ nav.content-single-pagination {
   nav.content-single-pagination a {
     padding: 5px 0px;
   }
+  nav.root-nav .nav-element {
+    padding: 10px 0px;
+  }
 }
 
 
