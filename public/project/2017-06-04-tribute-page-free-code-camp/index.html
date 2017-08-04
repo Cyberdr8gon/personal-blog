@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="generator" content="Hugo 0.18.1" />
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+
+</head>
+
+<body>
+  <div class="header">
+    <div id="stringDataDivHidden" data-first-name="Sam" data-login="CyberDr8gon" data-hostname="mySite"></div>
+    <a href="/">
+      <div id="header-wrapper" class="header-wrapper">
+        <b id="username"><span id="consoleText">Sam@bateman.io:~$</span><span id="cursor">_</span></b>
+      </div>
+    </a>
+  </div>
+
+  <nav class="root-nav">
+    
+        
+          <a href="/">
+            <div class="nav-element">
+              ~
+            </div>
+          </a>
+        
+          <a href="/post/">
+            <div class="nav-element">
+              ~/posts
+            </div>
+          </a>
+        
+          <a href="/project/">
+            <div class="nav-element">
+              ~/projects
+            </div>
+          </a>
+        
+    
+  </nav>
+
+  <div class="page-content">
+    <div class="wrapper">
+
+
+
+
+<div class="content-post">
+  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">Tribute Page - Free Code Camp</h1>
+      <p class="post-meta">
+        <time datetime="2017-06-04 00:00:00 &#43;0000 UTC" itemprop="datePublished">
+          Jun 04, 2017
+        </time>
+      </p>
+    </header>
+
+    <div class="post-content" itemprop="articleBody">
+      <p><a href="http://bateman.io/tribute-page-fcc/">Check it out!</a></p>
+
+<p>For <a href="http://beta.freecodecamp.com/en/map">Free Code Camp</a> (really an awesome program), I decided to go back and redo all the projects with the beta version. I am truely a fan of the site and almost have earned my normal Front-End Certificate. However, I decided just to do all the projects in the beta version.
+This is the first of those projects.</p>
+
+<p></p>
+
+<p>For anyone inrested in the dirty details:</p>
+
+<p>The general design was meant to feel like you were looking through a slideshow/powerpoint. I think the pastels work nicely together and the whole experience feels very non-aggressive.</p>
+
+<p>All of the fancy responsive stuff is done via jQuery and querying the window.screen attribute. I have looked aroung and I can&rsquo;t find anything that doesn&rsquo;t support it.</p>
+
+<p>I also used some CSS3 for quicker fixes in the CSS:</p>
+
+<pre><code class="language-css">@media (max-width: 480px) {
+  .section {
+    margin: 0;
+    flex-direction: column;
+    font-size: 100%;
+  
+  }
+
+}
+
+</code></pre>
+
+<p>I had a little trouble with the fonts at first because bower doesn&rsquo;t handle fonts well and every package does it differently, luckily, I was able to use google fonts for one of them and a packaged font on the github CDN for the other. I would have prefered for both of them to be on the CDN, but bower poorly manages those dependencies. In the future, I would rather just use NPM/Yarn and use a linking dev-dependency.</p>
+
+<p>My one regret that I wish I could have made better was the moving, scrolling arrows, They are made of two rotate corners that are translated downwards and fade from view ad infinitum. I was peeking around on codepen for awhile before I made a solution that I felt comfortale using. It ended up very good, but the tapping to move down is inconsistent at best on mobile and could be improved by maintaining the link space even when the arrow is not visible.</p>
+
+<p>Still they look pretty cool, here is the dependant SCSS:</p>
+
+<pre><code class="language-css">.scroll-down {
+  position: absolute;
+  left: 50%;
+  bottom: 5vh;
+  display: block;
+  text-align: center;
+  font-size: 20px;
+  z-index: 100;
+  text-decoration: none;
+  text-shadow: 0;
+  width: 13px;
+  height: 13px;
+  border-bottom: 2px solid #000;
+  border-right: 2px solid #000;
+  z-index: 9;
+  -webkit-transform: translate(-50%, 0%) rotate(45deg);
+  -moz-transform: translate(-50%, 0%) rotate(45deg);
+  transform: translate(-50%, 0%) rotate(45deg);
+  -webkit-animation: fade_move_down 2s ease-in-out infinite;
+  -moz-animation: fade_move_down 2s ease-in-out infinite;
+  animation: fade_move_down 2s ease-in-out infinite;
+
+}
+
+@-webkit-keyframes fade_move_down {
+  0% {
+-webkit-transform:translate(0, -10px) rotate(45deg);
+opacity: 0;
+
+  }
+  50% {
+opacity: 1;
+
+  }
+  100% {
+-webkit-transform:translate(0, 10px) rotate(45deg);
+opacity: 0;
+
+  }
+
+}
+@-moz-keyframes fade_move_down {
+  0% {
+-moz-transform:translate(0, -10px) rotate(45deg);
+opacity: 0;
+
+  }
+  50% {
+opacity: 1;
+
+  }
+  100% {
+-moz-transform:translate(0, 10px) rotate(45deg);
+opacity: 0;
+
+  }
+
+}
+@keyframes fade_move_down {
+  0% {
+transform:translate(0, -10px) rotate(45deg);
+opacity: 0;
+
+  }
+  50% {
+opacity: 1;
+
+  }
+  100% {
+transform:translate(0, 10px) rotate(45deg);
+opacity: 0;
+
+  }
+
+}
+
+</code></pre>
+
+<p>I cannot be more greatful for all the awesome examples on CodePen that made that possible, I learned alot about CSS and how to animate with it.</p>
+
+<p>The other thing that could have been done better was forcing scrolling between sections to make the whole experience more clean.</p>
+    </div>
+
+  <nav>
+    
+    
+      <a class="next-post" href="/project/2017-06-10-survey-form-free-code-camp/">Survey Form - Free Code Camp<img class="icon-text" src="/img/next.svg"/>
+      </a>
+    
+  </nav>
+
+  </article>
+</div>
+
+
+
+
+    </div>
+  </div>
+
+
+
+  <div class="footer">
+    <div class="footer-wrapper">
+      &#169; 2017 Sam Bateman
+    </div>
+    <div class="contact">
+      <ul class="social-media">
+  
+      </ul>
+    </div>
+  </div>
+  
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" integrity="sha256-HxaKz5E/eBbvhGMNwhWRPrAR9i/lG1JeT4mD6hCQ7s4=" crossorigin="anonymous" />
+  <link rel="stylesheet" href="/css/main.css">
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/gruvbox-light.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="/js/main.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:300|Ubuntu" rel="stylesheet">
+
+
+</body>
+
+
+</html>
+

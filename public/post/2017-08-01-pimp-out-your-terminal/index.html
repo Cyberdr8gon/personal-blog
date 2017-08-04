@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="generator" content="Hugo 0.18.1" />
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+
+</head>
+
+<body>
+  <div class="header">
+    <div id="stringDataDivHidden" data-first-name="Sam" data-login="CyberDr8gon" data-hostname="mySite"></div>
+    <a href="/">
+      <div id="header-wrapper" class="header-wrapper">
+        <b id="username"><span id="consoleText">Sam@bateman.io:~$</span><span id="cursor">_</span></b>
+      </div>
+    </a>
+  </div>
+
+  <nav class="root-nav">
+    
+        
+          <a href="/">
+            <div class="nav-element">
+              ~
+            </div>
+          </a>
+        
+          <a href="/post/">
+            <div class="nav-element">
+              ~/posts
+            </div>
+          </a>
+        
+          <a href="/project/">
+            <div class="nav-element">
+              ~/projects
+            </div>
+          </a>
+        
+    
+  </nav>
+
+  <div class="page-content">
+    <div class="wrapper">
+
+
+
+
+<div class="content-post">
+  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">How to pimp out your terminal</h1>
+      <p class="post-meta">
+        <time datetime="2017-08-01 00:00:00 &#43;0000 UTC" itemprop="datePublished">
+          Aug 01, 2017
+        </time>
+      </p>
+    </header>
+
+    <div class="post-content" itemprop="articleBody">
+      <p>As a side note, this whole post is really meant for people new to *nix systems. If you are more experienced with the terminal, I recommend just scrolling to the bottom for the links to the projects you might not have seen before.</p>
+
+<p>I spend a whole lot of time in my terminal. Definitely more than my fellow CS Student compatriots. And for good reason, terminals are far more efficient than GUI&rsquo;s at everything except for design work (and occasionally IDEs can make accessing tools easier than a terminal). There is a lot of cool ways to control your computer through cron and bash scripting, but this guide will focus on just making your terminal look more visually appealing and be a bit more functional.</p>
+
+<p></p>
+
+<p>It should be known I will be using the GNOME terminal just because it is convenient, however, most of this should be portable to all modern terminal emulators (looking at you xterm).</p>
+
+<h1 id="zsh">Zsh</h1>
+
+<p>First, if you haven&rsquo;t already, install zsh. It is similar to bash, but with a bit more extensible scripting language. While you might say, why do I care about a slightly better scripting language, I say, you don&rsquo;t have to. zsh is fully sh compliant and you should have no problems using it as your default shell almost exactly how you would use bash. The benefits of zsh are in its awesome auto-completion of everything you type, the ability to run programs based on regex and a bunch of other options.</p>
+
+<p>Your package manager should have zsh.</p>
+
+<p>On Ubuntu, you would run
+{% highlight bash %}
+$ sudo apt install zsh
+{% endhighlight }</p>
+
+<p>On Mac OS, you should use homebrew to install zsh. I am sure they have a package for it.</p>
+
+<p>On all non-Ubuntu Linux systems, you can find it on your package manager. [This page has more indepth instructions for each other system.][<a href="https://github.com/robbyrussell/oh-my-zsh/wiki/Installing-ZSH">https://github.com/robbyrussell/oh-my-zsh/wiki/Installing-ZSH</a>]</p>
+
+<p>Then, after installing zsh, check its version with
+{% highlight bash %}
+$ zsh &ndash;version
+{% endhighlight }</p>
+
+<p>That version SHOULD be 4.3.9 or more recent. If it isn&rsquo;t, not all of this will work for you.</p>
+
+<p>If everything goes well, you can change zsh to your default shell by running
+{% highlight bash %}
+$ chsh -s $(which zsh)
+{% endhighlight }</p>
+
+<p>If this doesn&rsquo;t work, check [this google search out][<a href="https://www.google.com/search?q=zsh+default+without+chsh">https://www.google.com/search?q=zsh+default+without+chsh</a>]</p>
+
+<p>Now logout and log back in. If all goes well, the following command should respond with something similar to &ldquo;/bin/zsh&rdquo;
+{% highlight bash %}
+$ echo $SHELL
+{% endhighlight }</p>
+
+<p>If all has gone well, awesome! You now have a better shell then you did before. It has many more features than bash, but I am not a expert in configuring my zsh to look crazy amazing.</p>
+
+<h1 id="oh-my-zsh">oh-my-zsh</h1>
+
+<p>But [these guys][<a href="https://github.com/robbyrussell/oh-my-zsh">https://github.com/robbyrussell/oh-my-zsh</a>] are, and we are going to use Oh-My-Zsh to make the noticable change in how our terminal looks. But more importantly, our terminal will be a better interface and easier to reason about.</p>
+
+<p>Run this to install oh-my-zsh
+{% highlight bash %}
+$ sh -c &ldquo;$(curl -fsSL <a href="https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)&quot;">https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)&quot;</a>
+{% endhighlight }</p>
+
+<p>It should walk you through installation with various options. If you already use your machine for programming, the autodetect options work well and will add autocomplete to many of your current tools command line args.</p>
+
+<p>The most important part is, of course, selecting a theme. After completing the set up, go [here][<a href="https://github.com/robbyrussell/oh-my-zsh/wiki/themes">https://github.com/robbyrussell/oh-my-zsh/wiki/themes</a>] and choose one you like. I personally use bira, but all of them work. I would recommend using one that has info of git repos built in, it is so useful!!</p>
+
+<p>Once you have chosen one, go to your .zshrc file in your home directory (&ldquo;cd ~ &amp;&amp; vim .zshrc&rdquo;) and change the theme line with the name of the theme you want. Then, close all your terminals and open a new one and you should see your new theme!</p>
+
+<h1 id="terminal-colorscheme-profiles">Terminal Colorscheme Profiles</h1>
+
+<p>Now, this one is my personal opinion.</p>
+
+<p>I would recommend setting up 3 or 4 profiles of different colorschemes for your terminal emulator that are all fairly different. Atleast 2 light themes and 2 dark themes. Why? Because if you work on your laptop and go anywhere, sometimes you will have glare, sometimes your eyes will be tired, etc. There will always be a comfortable colorscheme that is quick to change to.</p>
+
+<p>I have 6 profiles for my terminal:
+ - Firefox Dev
+ - [Gotham][<a href="https://github.com/whatyouhide/vim-gotham">https://github.com/whatyouhide/vim-gotham</a>]
+ - [Gruvbox Light][<a href="https://github.com/morhetz/gruvbox">https://github.com/morhetz/gruvbox</a>]
+ - [Gruvbox Dark][<a href="https://github.com/morhetz/gruvbox">https://github.com/morhetz/gruvbox</a>]
+ - [Lucius Light][<a href="https://github.com/jonathanfilip/lucius">https://github.com/jonathanfilip/lucius</a>]
+ - [Lucius Dark][<a href="https://github.com/jonathanfilip/lucius">https://github.com/jonathanfilip/lucius</a>]</p>
+
+<p>Unfourtunately, the colorscheme I used for the Firefox Dev theme aren&rsquo;t around anymore, so I will provide theme here! It is by far my favorite and works well with tmux and vim in terminal</p>
+
+<h2 id="firefox-dev-colorscheme">Firefox Dev Colorscheme</h2>
+
+<p>Text: #7C8FA4</p>
+
+<p>Background: #0E1011</p>
+
+<p>Bold: #A7ACB2</p>
+
+<p>Cursor Color: #708284</p>
+
+<p>Cursor Background: #708284</p>
+
+<p>Color #0: #002831</p>
+
+<p>Color #1: #E63853</p>
+
+<p>Color #2: #5EB83C</p>
+
+<p>Color #3: #A57706</p>
+
+<p>Color #4: #359DDF</p>
+
+<p>Color #5: #D75CFF</p>
+
+<p>Color #6: #4B73A2</p>
+
+<p>Color #7: #DCDCDC</p>
+
+<p>Color #8: #001E27</p>
+
+<p>Color #9: #E1003F</p>
+
+<p>Color #10: #1D9000</p>
+
+<p>Color #11: #CD9409</p>
+
+<p>Color #12: #006FC0</p>
+
+<p>Color #13: #D7AFD7</p>
+
+<p>Color #14: #005794</p>
+
+<p>Color #15: #E2E2E2</p>
+
+<h1 id="tmux">Tmux</h1>
+
+<p>[Tmux][<a href="http://man.openbsd.org/OpenBSD-current/man1/tmux.1">http://man.openbsd.org/OpenBSD-current/man1/tmux.1</a>], by itself, has made me so much more productive. I used to have one terminal window for vim, another one for running builds or web servers, another one for system admin tasks and playing music, etc. And that is a ton of windows. I even moved to [i3 window manager][<a href="https://i3wm.org/">https://i3wm.org/</a>] for awhile because of the difficulty of keeping track of so many terminals (by the way, I love i3 and I will probably go back someday, I just don&rsquo;t know how well it works with multiple monitors). I can&rsquo;t really walk you through such a huge and personal topic as customizing tmux for your needs. I can point you to what I learned from though. [This book][<a href="http://a.co/j0rSFsk">http://a.co/j0rSFsk</a>] is an amazing, indepth resource to tmux and I can&rsquo;t ever thank the author enough for how much it helped in setting up my tmux.</p>
+
+<p>I personally keep my battery life, date/time, session information (i.e. terminal that is open, which pane I am looking at, which instance of tmux I am connected to) and the names of the running terminals in a bar across the bottom. I also bind Caps lock to Ctrl and the tmux leader key to be Ctrl+a. Doing this makes it very easy on my hands/wrists to manage my session while still getting all the positivities of a tiling terminal multiplexer.</p>
+
+<h1 id="icons-in-terminal">Icons In Terminal</h1>
+
+<p>This is a recent addition to my terminal, allowing you to use tools that show non-ascii characters without patching your font (a tedious and error prone process). This project is constantly changing so I will just direct you to their github page for install instructions: [icons-in-terminal][<a href="https://github.com/sebastiencs/icons-in-terminal">https://github.com/sebastiencs/icons-in-terminal</a>].</p>
+
+<p>When you finish this, follow the instructions to build [this project][<a href="https://github.com/sebastiencs/ls-icons">https://github.com/sebastiencs/ls-icons</a>]. It has a lot of requirements so be sure to use your package manager to download everything listed in README-prereq.</p>
+
+<p>When you finish all of the build and install steps, I found that my system still defaulted to /bin/ls rather than my new one, so I copied /opt/coreutils/bin/ls to /bin/ls with:
+{% highlight bash %}
+$ cp /opt/coreutils/bin/ls /bin
+{% endhighlight }</p>
+
+<p>You will likely have to run that with root permissions (i.e. sudo) as that is a protected folder.</p>
+
+<p>If you run ls now, it should have pretty icons!</p>
+
+<p>If you broke ls, you can
+{% highlight bash %}
+$ sudo apt install &ndash;reinstall coreutils
+{% endhighlight }</p>
+
+<p>and it will reinstall the normal ls :D</p>
+
+<p>I hope your terminal looks awesome, but you also discover some of the productivity gains that come from all of these additions. Overall, I think it has greatly improved my terminal experience and some of them have made me much more productive. Plus, you look awesome when people look how productive and cool your terminal is XD</p>
+    </div>
+
+  <nav>
+    
+    
+  </nav>
+
+  </article>
+</div>
+
+
+
+
+    </div>
+  </div>
+
+
+
+  <div class="footer">
+    <div class="footer-wrapper">
+      &#169; 2017 Sam Bateman
+    </div>
+    <div class="contact">
+      <ul class="social-media">
+  
+      </ul>
+    </div>
+  </div>
+  
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" integrity="sha256-HxaKz5E/eBbvhGMNwhWRPrAR9i/lG1JeT4mD6hCQ7s4=" crossorigin="anonymous" />
+  <link rel="stylesheet" href="/css/main.css">
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/gruvbox-light.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="/js/main.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:300|Ubuntu" rel="stylesheet">
+
+
+</body>
+
+
+</html>
+

@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Projects on Sam Bateman</title>
+    <link>/project/index.xml</link>
+    <description>Recent content in Projects on Sam Bateman</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 10 Jun 2017 00:00:00 +0000</lastBuildDate>
+    <atom:link href="/project/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Survey Form - Free Code Camp</title>
+      <link>/project/2017-06-10-survey-form-free-code-camp/</link>
+      <pubDate>Sat, 10 Jun 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/project/2017-06-10-survey-form-free-code-camp/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;http://bateman.io/survey-form-fcc/&#34;&gt;Check it out!&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Another project for &lt;a href=&#34;http://beta.freecodecamp.com/en/map&#34;&gt;Free Code Camp&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;For this project, I wanted to use Google Sheets as a simple backend for the data one extracts out of a form.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;Some of this implementation was actually quite intresting. I would like to credit myself for this idea but it wasn&amp;rsquo;t mine. I was heavily inspired by the work in &lt;a href=&#34;https://github.com/dwyl/html-form-send-email-via-google-script-without-server&#34;&gt;this github repo.&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;It ended up being pretty slick. All I had to supply to the form was a simple url provided by google. Then I hooked it up to a simple page to show everyone who takes the survey all the results!&lt;/p&gt;
+
+&lt;p&gt;Not everything was so peachy though, the github repo I mentioned earlier has a lot of broken code that doesn&amp;rsquo;t do what it claims to. None the less, it offers a quick intro to deploying a google app script as a web app.&lt;/p&gt;
+
+&lt;p&gt;Anyone who wants to follow in my footsteps and utilize Google Sheets in the manner should know that the best way to open the correct document is to extract its ID out of the URL you view it through normally. This will allow you to consistantly open it without error, something the tutorial doesn&amp;rsquo;t mention.&lt;/p&gt;
+
+&lt;p&gt;My Google App Script:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;function doPost(e) {
+
+  try {
+    Logger.log(e);
+    record_data(e);
+  
+  }
+  catch(error) {
+    Logger.log(error);
+  
+  }
+  
+  return HtmlService.createHtmlOutput(&#39;&amp;lt;h1&amp;gt;Thank you for your submission!&amp;lt;/h1&amp;gt; &amp;lt;br/&amp;gt; Check out the results &amp;lt;a href=&amp;quot;https://docs.google.com/spreadsheets/d/1wPDAmBY1Eg6JjPCcilMiS3AuyX7WyDA38l6pvciIolM/edit?usp=sharing&amp;quot;&amp;gt;here!&amp;lt;/a&amp;gt;&#39;);
+
+}
+
+function record_data(e) {
+  Logger.log(JSON.stringify(e)); // log the POST data in case we need to debug it
+  try {
+    var doc     = SpreadsheetApp.openById(&amp;quot;1wPDAmBY1Eg6JjPCcilMiS3AuyX7WyDA38l6pvciIolM&amp;quot;)
+    var sheet   = doc.getSheetByName(&#39;responses&#39;); // select the responses sheet
+    var headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
+    var nextRow = sheet.getLastRow()+1; // get next row
+    var row     = [ new Date()  ]; // first element in the row should always be a timestamp
+    // loop through the header columns
+    for (var i = 1; i &amp;lt; headers.length; i++) { // start at 1 to avoid Timestamp column
+      if(headers[i].length &amp;gt; 0) {
+        row.push(e.parameter[headers[i]]); // add data to row
+      
+      }
+     }
+    // more efficient to set values as [][] array than individually
+    sheet.getRange(nextRow, 1, 1, row.length).setValues([row]);
+  
+  }
+  catch(error) {
+    Logger.log(e);
+  
+  }
+  finally {
+    return;
+  
+  }
+
+
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Check out the &lt;a href=&#34;https://github.com/Cyberdr8gon/survey-form-fcc&#34;&gt;github repo!&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Tribute Page - Free Code Camp</title>
+      <link>/project/2017-06-04-tribute-page-free-code-camp/</link>
+      <pubDate>Sun, 04 Jun 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/project/2017-06-04-tribute-page-free-code-camp/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;http://bateman.io/tribute-page-fcc/&#34;&gt;Check it out!&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;For &lt;a href=&#34;http://beta.freecodecamp.com/en/map&#34;&gt;Free Code Camp&lt;/a&gt; (really an awesome program), I decided to go back and redo all the projects with the beta version. I am truely a fan of the site and almost have earned my normal Front-End Certificate. However, I decided just to do all the projects in the beta version.
+This is the first of those projects.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;For anyone inrested in the dirty details:&lt;/p&gt;
+
+&lt;p&gt;The general design was meant to feel like you were looking through a slideshow/powerpoint. I think the pastels work nicely together and the whole experience feels very non-aggressive.&lt;/p&gt;
+
+&lt;p&gt;All of the fancy responsive stuff is done via jQuery and querying the window.screen attribute. I have looked aroung and I can&amp;rsquo;t find anything that doesn&amp;rsquo;t support it.&lt;/p&gt;
+
+&lt;p&gt;I also used some CSS3 for quicker fixes in the CSS:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-css&#34;&gt;@media (max-width: 480px) {
+  .section {
+    margin: 0;
+    flex-direction: column;
+    font-size: 100%;
+  
+  }
+
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I had a little trouble with the fonts at first because bower doesn&amp;rsquo;t handle fonts well and every package does it differently, luckily, I was able to use google fonts for one of them and a packaged font on the github CDN for the other. I would have prefered for both of them to be on the CDN, but bower poorly manages those dependencies. In the future, I would rather just use NPM/Yarn and use a linking dev-dependency.&lt;/p&gt;
+
+&lt;p&gt;My one regret that I wish I could have made better was the moving, scrolling arrows, They are made of two rotate corners that are translated downwards and fade from view ad infinitum. I was peeking around on codepen for awhile before I made a solution that I felt comfortale using. It ended up very good, but the tapping to move down is inconsistent at best on mobile and could be improved by maintaining the link space even when the arrow is not visible.&lt;/p&gt;
+
+&lt;p&gt;Still they look pretty cool, here is the dependant SCSS:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-css&#34;&gt;.scroll-down {
+  position: absolute;
+  left: 50%;
+  bottom: 5vh;
+  display: block;
+  text-align: center;
+  font-size: 20px;
+  z-index: 100;
+  text-decoration: none;
+  text-shadow: 0;
+  width: 13px;
+  height: 13px;
+  border-bottom: 2px solid #000;
+  border-right: 2px solid #000;
+  z-index: 9;
+  -webkit-transform: translate(-50%, 0%) rotate(45deg);
+  -moz-transform: translate(-50%, 0%) rotate(45deg);
+  transform: translate(-50%, 0%) rotate(45deg);
+  -webkit-animation: fade_move_down 2s ease-in-out infinite;
+  -moz-animation: fade_move_down 2s ease-in-out infinite;
+  animation: fade_move_down 2s ease-in-out infinite;
+
+}
+
+@-webkit-keyframes fade_move_down {
+  0% {
+-webkit-transform:translate(0, -10px) rotate(45deg);
+opacity: 0;
+
+  }
+  50% {
+opacity: 1;
+
+  }
+  100% {
+-webkit-transform:translate(0, 10px) rotate(45deg);
+opacity: 0;
+
+  }
+
+}
+@-moz-keyframes fade_move_down {
+  0% {
+-moz-transform:translate(0, -10px) rotate(45deg);
+opacity: 0;
+
+  }
+  50% {
+opacity: 1;
+
+  }
+  100% {
+-moz-transform:translate(0, 10px) rotate(45deg);
+opacity: 0;
+
+  }
+
+}
+@keyframes fade_move_down {
+  0% {
+transform:translate(0, -10px) rotate(45deg);
+opacity: 0;
+
+  }
+  50% {
+opacity: 1;
+
+  }
+  100% {
+transform:translate(0, 10px) rotate(45deg);
+opacity: 0;
+
+  }
+
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I cannot be more greatful for all the awesome examples on CodePen that made that possible, I learned alot about CSS and how to animate with it.&lt;/p&gt;
+
+&lt;p&gt;The other thing that could have been done better was forcing scrolling between sections to make the whole experience more clean.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Sam Bateman</title>
+    <link>/post/index.xml</link>
+    <description>Recent content in Posts on Sam Bateman</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 01 Aug 2017 00:00:00 +0000</lastBuildDate>
+    <atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>How to pimp out your terminal</title>
+      <link>/post/2017-08-01-pimp-out-your-terminal/</link>
+      <pubDate>Tue, 01 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2017-08-01-pimp-out-your-terminal/</guid>
+      <description>&lt;p&gt;As a side note, this whole post is really meant for people new to *nix systems. If you are more experienced with the terminal, I recommend just scrolling to the bottom for the links to the projects you might not have seen before.&lt;/p&gt;
+
+&lt;p&gt;I spend a whole lot of time in my terminal. Definitely more than my fellow CS Student compatriots. And for good reason, terminals are far more efficient than GUI&amp;rsquo;s at everything except for design work (and occasionally IDEs can make accessing tools easier than a terminal). There is a lot of cool ways to control your computer through cron and bash scripting, but this guide will focus on just making your terminal look more visually appealing and be a bit more functional.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;It should be known I will be using the GNOME terminal just because it is convenient, however, most of this should be portable to all modern terminal emulators (looking at you xterm).&lt;/p&gt;
+
+&lt;h1 id=&#34;zsh&#34;&gt;Zsh&lt;/h1&gt;
+
+&lt;p&gt;First, if you haven&amp;rsquo;t already, install zsh. It is similar to bash, but with a bit more extensible scripting language. While you might say, why do I care about a slightly better scripting language, I say, you don&amp;rsquo;t have to. zsh is fully sh compliant and you should have no problems using it as your default shell almost exactly how you would use bash. The benefits of zsh are in its awesome auto-completion of everything you type, the ability to run programs based on regex and a bunch of other options.&lt;/p&gt;
+
+&lt;p&gt;Your package manager should have zsh.&lt;/p&gt;
+
+&lt;p&gt;On Ubuntu, you would run
+{% highlight bash %}
+$ sudo apt install zsh
+{% endhighlight }&lt;/p&gt;
+
+&lt;p&gt;On Mac OS, you should use homebrew to install zsh. I am sure they have a package for it.&lt;/p&gt;
+
+&lt;p&gt;On all non-Ubuntu Linux systems, you can find it on your package manager. [This page has more indepth instructions for each other system.][&lt;a href=&#34;https://github.com/robbyrussell/oh-my-zsh/wiki/Installing-ZSH&#34;&gt;https://github.com/robbyrussell/oh-my-zsh/wiki/Installing-ZSH&lt;/a&gt;]&lt;/p&gt;
+
+&lt;p&gt;Then, after installing zsh, check its version with
+{% highlight bash %}
+$ zsh &amp;ndash;version
+{% endhighlight }&lt;/p&gt;
+
+&lt;p&gt;That version SHOULD be 4.3.9 or more recent. If it isn&amp;rsquo;t, not all of this will work for you.&lt;/p&gt;
+
+&lt;p&gt;If everything goes well, you can change zsh to your default shell by running
+{% highlight bash %}
+$ chsh -s $(which zsh)
+{% endhighlight }&lt;/p&gt;
+
+&lt;p&gt;If this doesn&amp;rsquo;t work, check [this google search out][&lt;a href=&#34;https://www.google.com/search?q=zsh+default+without+chsh&#34;&gt;https://www.google.com/search?q=zsh+default+without+chsh&lt;/a&gt;]&lt;/p&gt;
+
+&lt;p&gt;Now logout and log back in. If all goes well, the following command should respond with something similar to &amp;ldquo;/bin/zsh&amp;rdquo;
+{% highlight bash %}
+$ echo $SHELL
+{% endhighlight }&lt;/p&gt;
+
+&lt;p&gt;If all has gone well, awesome! You now have a better shell then you did before. It has many more features than bash, but I am not a expert in configuring my zsh to look crazy amazing.&lt;/p&gt;
+
+&lt;h1 id=&#34;oh-my-zsh&#34;&gt;oh-my-zsh&lt;/h1&gt;
+
+&lt;p&gt;But [these guys][&lt;a href=&#34;https://github.com/robbyrussell/oh-my-zsh&#34;&gt;https://github.com/robbyrussell/oh-my-zsh&lt;/a&gt;] are, and we are going to use Oh-My-Zsh to make the noticable change in how our terminal looks. But more importantly, our terminal will be a better interface and easier to reason about.&lt;/p&gt;
+
+&lt;p&gt;Run this to install oh-my-zsh
+{% highlight bash %}
+$ sh -c &amp;ldquo;$(curl -fsSL &lt;a href=&#34;https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)&amp;quot;&#34;&gt;https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)&amp;quot;&lt;/a&gt;
+{% endhighlight }&lt;/p&gt;
+
+&lt;p&gt;It should walk you through installation with various options. If you already use your machine for programming, the autodetect options work well and will add autocomplete to many of your current tools command line args.&lt;/p&gt;
+
+&lt;p&gt;The most important part is, of course, selecting a theme. After completing the set up, go [here][&lt;a href=&#34;https://github.com/robbyrussell/oh-my-zsh/wiki/themes&#34;&gt;https://github.com/robbyrussell/oh-my-zsh/wiki/themes&lt;/a&gt;] and choose one you like. I personally use bira, but all of them work. I would recommend using one that has info of git repos built in, it is so useful!!&lt;/p&gt;
+
+&lt;p&gt;Once you have chosen one, go to your .zshrc file in your home directory (&amp;ldquo;cd ~ &amp;amp;&amp;amp; vim .zshrc&amp;rdquo;) and change the theme line with the name of the theme you want. Then, close all your terminals and open a new one and you should see your new theme!&lt;/p&gt;
+
+&lt;h1 id=&#34;terminal-colorscheme-profiles&#34;&gt;Terminal Colorscheme Profiles&lt;/h1&gt;
+
+&lt;p&gt;Now, this one is my personal opinion.&lt;/p&gt;
+
+&lt;p&gt;I would recommend setting up 3 or 4 profiles of different colorschemes for your terminal emulator that are all fairly different. Atleast 2 light themes and 2 dark themes. Why? Because if you work on your laptop and go anywhere, sometimes you will have glare, sometimes your eyes will be tired, etc. There will always be a comfortable colorscheme that is quick to change to.&lt;/p&gt;
+
+&lt;p&gt;I have 6 profiles for my terminal:
+ - Firefox Dev
+ - [Gotham][&lt;a href=&#34;https://github.com/whatyouhide/vim-gotham&#34;&gt;https://github.com/whatyouhide/vim-gotham&lt;/a&gt;]
+ - [Gruvbox Light][&lt;a href=&#34;https://github.com/morhetz/gruvbox&#34;&gt;https://github.com/morhetz/gruvbox&lt;/a&gt;]
+ - [Gruvbox Dark][&lt;a href=&#34;https://github.com/morhetz/gruvbox&#34;&gt;https://github.com/morhetz/gruvbox&lt;/a&gt;]
+ - [Lucius Light][&lt;a href=&#34;https://github.com/jonathanfilip/lucius&#34;&gt;https://github.com/jonathanfilip/lucius&lt;/a&gt;]
+ - [Lucius Dark][&lt;a href=&#34;https://github.com/jonathanfilip/lucius&#34;&gt;https://github.com/jonathanfilip/lucius&lt;/a&gt;]&lt;/p&gt;
+
+&lt;p&gt;Unfourtunately, the colorscheme I used for the Firefox Dev theme aren&amp;rsquo;t around anymore, so I will provide theme here! It is by far my favorite and works well with tmux and vim in terminal&lt;/p&gt;
+
+&lt;h2 id=&#34;firefox-dev-colorscheme&#34;&gt;Firefox Dev Colorscheme&lt;/h2&gt;
+
+&lt;p&gt;Text: #7C8FA4&lt;/p&gt;
+
+&lt;p&gt;Background: #0E1011&lt;/p&gt;
+
+&lt;p&gt;Bold: #A7ACB2&lt;/p&gt;
+
+&lt;p&gt;Cursor Color: #708284&lt;/p&gt;
+
+&lt;p&gt;Cursor Background: #708284&lt;/p&gt;
+
+&lt;p&gt;Color #0: #002831&lt;/p&gt;
+
+&lt;p&gt;Color #1: #E63853&lt;/p&gt;
+
+&lt;p&gt;Color #2: #5EB83C&lt;/p&gt;
+
+&lt;p&gt;Color #3: #A57706&lt;/p&gt;
+
+&lt;p&gt;Color #4: #359DDF&lt;/p&gt;
+
+&lt;p&gt;Color #5: #D75CFF&lt;/p&gt;
+
+&lt;p&gt;Color #6: #4B73A2&lt;/p&gt;
+
+&lt;p&gt;Color #7: #DCDCDC&lt;/p&gt;
+
+&lt;p&gt;Color #8: #001E27&lt;/p&gt;
+
+&lt;p&gt;Color #9: #E1003F&lt;/p&gt;
+
+&lt;p&gt;Color #10: #1D9000&lt;/p&gt;
+
+&lt;p&gt;Color #11: #CD9409&lt;/p&gt;
+
+&lt;p&gt;Color #12: #006FC0&lt;/p&gt;
+
+&lt;p&gt;Color #13: #D7AFD7&lt;/p&gt;
+
+&lt;p&gt;Color #14: #005794&lt;/p&gt;
+
+&lt;p&gt;Color #15: #E2E2E2&lt;/p&gt;
+
+&lt;h1 id=&#34;tmux&#34;&gt;Tmux&lt;/h1&gt;
+
+&lt;p&gt;[Tmux][&lt;a href=&#34;http://man.openbsd.org/OpenBSD-current/man1/tmux.1&#34;&gt;http://man.openbsd.org/OpenBSD-current/man1/tmux.1&lt;/a&gt;], by itself, has made me so much more productive. I used to have one terminal window for vim, another one for running builds or web servers, another one for system admin tasks and playing music, etc. And that is a ton of windows. I even moved to [i3 window manager][&lt;a href=&#34;https://i3wm.org/&#34;&gt;https://i3wm.org/&lt;/a&gt;] for awhile because of the difficulty of keeping track of so many terminals (by the way, I love i3 and I will probably go back someday, I just don&amp;rsquo;t know how well it works with multiple monitors). I can&amp;rsquo;t really walk you through such a huge and personal topic as customizing tmux for your needs. I can point you to what I learned from though. [This book][&lt;a href=&#34;http://a.co/j0rSFsk&#34;&gt;http://a.co/j0rSFsk&lt;/a&gt;] is an amazing, indepth resource to tmux and I can&amp;rsquo;t ever thank the author enough for how much it helped in setting up my tmux.&lt;/p&gt;
+
+&lt;p&gt;I personally keep my battery life, date/time, session information (i.e. terminal that is open, which pane I am looking at, which instance of tmux I am connected to) and the names of the running terminals in a bar across the bottom. I also bind Caps lock to Ctrl and the tmux leader key to be Ctrl+a. Doing this makes it very easy on my hands/wrists to manage my session while still getting all the positivities of a tiling terminal multiplexer.&lt;/p&gt;
+
+&lt;h1 id=&#34;icons-in-terminal&#34;&gt;Icons In Terminal&lt;/h1&gt;
+
+&lt;p&gt;This is a recent addition to my terminal, allowing you to use tools that show non-ascii characters without patching your font (a tedious and error prone process). This project is constantly changing so I will just direct you to their github page for install instructions: [icons-in-terminal][&lt;a href=&#34;https://github.com/sebastiencs/icons-in-terminal&#34;&gt;https://github.com/sebastiencs/icons-in-terminal&lt;/a&gt;].&lt;/p&gt;
+
+&lt;p&gt;When you finish this, follow the instructions to build [this project][&lt;a href=&#34;https://github.com/sebastiencs/ls-icons&#34;&gt;https://github.com/sebastiencs/ls-icons&lt;/a&gt;]. It has a lot of requirements so be sure to use your package manager to download everything listed in README-prereq.&lt;/p&gt;
+
+&lt;p&gt;When you finish all of the build and install steps, I found that my system still defaulted to /bin/ls rather than my new one, so I copied /opt/coreutils/bin/ls to /bin/ls with:
+{% highlight bash %}
+$ cp /opt/coreutils/bin/ls /bin
+{% endhighlight }&lt;/p&gt;
+
+&lt;p&gt;You will likely have to run that with root permissions (i.e. sudo) as that is a protected folder.&lt;/p&gt;
+
+&lt;p&gt;If you run ls now, it should have pretty icons!&lt;/p&gt;
+
+&lt;p&gt;If you broke ls, you can
+{% highlight bash %}
+$ sudo apt install &amp;ndash;reinstall coreutils
+{% endhighlight }&lt;/p&gt;
+
+&lt;p&gt;and it will reinstall the normal ls :D&lt;/p&gt;
+
+&lt;p&gt;I hope your terminal looks awesome, but you also discover some of the productivity gains that come from all of these additions. Overall, I think it has greatly improved my terminal experience and some of them have made me much more productive. Plus, you look awesome when people look how productive and cool your terminal is XD&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
