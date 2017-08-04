@@ -42,10 +42,21 @@ a:active {
   color: #FFF;
 }
 
+.header a:link {
+  color: #FFF;
+}
+
+.header a:visited {
+  color: #FFF;
+}
+
 .header a:hover {
   color: #DB7093;
 }
 
+.header a:active {
+  color: #DB7093;
+}
 
 
 .content {
