@@ -124,6 +124,24 @@ nav.root-nav .nav-element {
 nav.root-nav .nav-element:hover {
   background: #8565c4;
 }
+.content-see-more {
+  padding-left: 5px;
+  font-size: 90%;
+}
+
+img.icon-text {
+  width: 15px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 0;
+  padding-bottom: 0px;
+}
+
+nav.content-single-pagination {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
 
 @media (max-width: 380px) {
   nav.root-nav {
@@ -136,9 +154,14 @@ nav.root-nav .nav-element:hover {
 
     width: 100vw;
   }
+  nav.content-single-pagination {
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+  }
+  nav.content-single-pagination a {
+    padding: 5px 0px;
+  }
 }
 
-.content-see-more {
-  padding-left: 5px;
-  font-size: 90%;
-}
+
