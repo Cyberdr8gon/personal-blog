@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="generator" content="Hugo 0.18.1" />
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+
+</head>
+
+<body>
+  <div class="header">
+    <div id="stringDataDivHidden" data-first-name="Sam" data-login="CyberDr8gon" data-hostname="mySite"></div>
+    <a href="/">
+      <div id="header-wrapper" class="header-wrapper">
+        <b id="username"><span id="consoleText">Sam@bateman.io:~$</span><span id="cursor">_</span></b>
+      </div>
+    </a>
+  </div>
+
+  <nav class="root-nav">
+    
+        
+          <a href="/">
+            <div class="nav-element">
+              ~
+            </div>
+          </a>
+        
+          <a href="/post/">
+            <div class="nav-element">
+              ~/posts
+            </div>
+          </a>
+        
+          <a href="/project/">
+            <div class="nav-element">
+              ~/projects
+            </div>
+          </a>
+        
+    
+  </nav>
+
+  <div class="page-content">
+    <div class="wrapper">
+
+
+
+
+<div class="content-post">
+  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">Survey Form - Free Code Camp</h1>
+      <p class="post-meta">
+        <time datetime="2017-06-10 00:00:00 &#43;0000 UTC" itemprop="datePublished">
+          Jun 10, 2017
+        </time>
+      </p>
+    </header>
+
+    <div class="post-content" itemprop="articleBody">
+      <p><a href="http://bateman.io/survey-form-fcc/">Check it out!</a></p>
+
+<p>Another project for <a href="http://beta.freecodecamp.com/en/map">Free Code Camp</a>.</p>
+
+<p>For this project, I wanted to use Google Sheets as a simple backend for the data one extracts out of a form.</p>
+
+<p></p>
+
+<p>Some of this implementation was actually quite intresting. I would like to credit myself for this idea but it wasn&rsquo;t mine. I was heavily inspired by the work in <a href="https://github.com/dwyl/html-form-send-email-via-google-script-without-server">this github repo.</a></p>
+
+<p>It ended up being pretty slick. All I had to supply to the form was a simple url provided by google. Then I hooked it up to a simple page to show everyone who takes the survey all the results!</p>
+
+<p>Not everything was so peachy though, the github repo I mentioned earlier has a lot of broken code that doesn&rsquo;t do what it claims to. None the less, it offers a quick intro to deploying a google app script as a web app.</p>
+
+<p>Anyone who wants to follow in my footsteps and utilize Google Sheets in the manner should know that the best way to open the correct document is to extract its ID out of the URL you view it through normally. This will allow you to consistantly open it without error, something the tutorial doesn&rsquo;t mention.</p>
+
+<p>My Google App Script:</p>
+
+<pre><code class="language-javascript">function doPost(e) {
+
+  try {
+    Logger.log(e);
+    record_data(e);
+  
+  }
+  catch(error) {
+    Logger.log(error);
+  
+  }
+  
+  return HtmlService.createHtmlOutput('&lt;h1&gt;Thank you for your submission!&lt;/h1&gt; &lt;br/&gt; Check out the results &lt;a href=&quot;https://docs.google.com/spreadsheets/d/1wPDAmBY1Eg6JjPCcilMiS3AuyX7WyDA38l6pvciIolM/edit?usp=sharing&quot;&gt;here!&lt;/a&gt;');
+
+}
+
+function record_data(e) {
+  Logger.log(JSON.stringify(e)); // log the POST data in case we need to debug it
+  try {
+    var doc     = SpreadsheetApp.openById(&quot;1wPDAmBY1Eg6JjPCcilMiS3AuyX7WyDA38l6pvciIolM&quot;)
+    var sheet   = doc.getSheetByName('responses'); // select the responses sheet
+    var headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
+    var nextRow = sheet.getLastRow()+1; // get next row
+    var row     = [ new Date()  ]; // first element in the row should always be a timestamp
+    // loop through the header columns
+    for (var i = 1; i &lt; headers.length; i++) { // start at 1 to avoid Timestamp column
+      if(headers[i].length &gt; 0) {
+        row.push(e.parameter[headers[i]]); // add data to row
+      
+      }
+     }
+    // more efficient to set values as [][] array than individually
+    sheet.getRange(nextRow, 1, 1, row.length).setValues([row]);
+  
+  }
+  catch(error) {
+    Logger.log(e);
+  
+  }
+  finally {
+    return;
+  
+  }
+
+
+}
+
+</code></pre>
+
+<p>Check out the <a href="https://github.com/Cyberdr8gon/survey-form-fcc">github repo!</a></p>
+    </div>
+
+  <nav class="content-single-pagination">
+    
+      <a class="prev-post" href="/project/tribute-page-free-code-camp/">
+        <img class="icon-text" src="/img/prev.svg"/>Tribute Page - Free Code Camp</a>
+    
+    
+  </nav>
+
+  </article>
+</div>
+
+
+
+
+    </div>
+  </div>
+
+
+
+  <div class="footer">
+    <div class="footer-wrapper">
+      &#169; 2017 Sam Bateman
+    </div>
+    <div class="contact">
+      <ul class="social-media">
+  
+      </ul>
+    </div>
+  </div>
+  
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" integrity="sha256-HxaKz5E/eBbvhGMNwhWRPrAR9i/lG1JeT4mD6hCQ7s4=" crossorigin="anonymous" />
+  <link rel="stylesheet" href="/css/main.css">
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/gruvbox-light.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="/js/main.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:300|Ubuntu" rel="stylesheet">
+
+
+</body>
+
+
+</html>
+
